@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kilian Ganné — Ingénieur du Sport, Biomécanique & R&D Produit</title>
+<meta name="description" content="Portfolio de Kilian Ganné, ingénieur du sport spécialisé en biomécanique et R&D produit pour le cyclisme et l'outdoor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF9F3;
+    --paper-alt:#F3EFE3;
+    --card:#FFFFFF;
+    --ink:#26332C;
+    --ink-soft:#69766E;
+    --primary:#1E7A5C;
+    --primary-dark:#155C45;
+    --accent:#E8834A;
+    --accent-soft:#FBEADC;
+    --sky:#3E6E8E;
+    --line:#E7E2D3;
+    --shadow-sm:0 1px 3px rgba(38,51,44,0.07);
+    --shadow-md:0 10px 30px -12px rgba(38,51,44,0.18), 0 2px 8px rgba(38,51,44,0.06);
+    --radius:18px;
+    --radius-sm:10px;
+    --display:'Space Grotesk', 'IBM Plex Sans', sans-serif;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+    --sans:'IBM Plex Sans', -apple-system, sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, #EAF3EE 0%, transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, #FCEEDF 0%, transparent 55%),
+      var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.65;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--primary);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px;}
+
+  /* ---------- TITLE BLOCK BAR ---------- */
+  .titleblock{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(251,249,243,0.88);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+  }
+  .titleblock-inner{
+    max-width:980px;
+    margin:0 auto;
+    display:flex;
+    align-items:stretch;
+  }
+  .tb-cell{
+    padding:10px 16px;
+    border-right:1px solid var(--line);
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .tb-cell:last-child{border-right:none;}
+  .tb-label{color:var(--ink-soft); font-weight:400;}
+  .tb-value{color:var(--ink); font-weight:600;}
+  .tb-name{flex:1; min-width:0;}
+  .tb-name .tb-value{color:var(--primary);}
+  #tb-sheet{color:var(--accent); font-weight:700;}
+  @media (max-width:640px){
+    .tb-cell:not(.tb-name):not(.tb-sheet-cell){display:none;}
+    .titleblock-inner{justify-content:space-between;}
+  }
+
+  .wrap{max-width:980px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- DIMENSION-LINE DIVIDER ---------- */
+  .sheet-header{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:0 0 40px 0;
+    font-family:var(--mono);
+  }
+  .sheet-header .num{
+    font-size:12.5px;
+    color:var(--accent);
+    font-weight:700;
+    white-space:nowrap;
+    background:var(--accent-soft);
+    padding:4px 9px;
+    border-radius:999px;
+  }
+  .sheet-header .dim-line{
+    flex:1;
+    height:1px;
+    background:var(--line);
+    position:relative;
+  }
+  .sheet-header .title{
+    font-family:var(--display);
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    white-space:nowrap;
+    color:var(--ink);
+  }
+
+  section{padding:80px 0;}
+  section:first-of-type{padding-top:64px;}
+
+  /* ---------- TAB BAR ---------- */
+  .tabbar{
+    position:sticky;
+    top:41px;
+    z-index:40;
+    background:transparent;
+    display:flex;
+    justify-content:center;
+    padding:14px 0;
+  }
+  .tab-btn{
+    font-family:var(--sans);
+    font-size:13.5px;
+    font-weight:600;
+    padding:9px 22px;
+    background:var(--card);
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow:var(--shadow-sm);
+  }
+  .tab-btn:first-child{border-radius:999px 0 0 999px; border-right:none;}
+  .tab-btn:last-child{border-radius:0 999px 999px 0;}
+  .tab-btn:hover{color:var(--ink);}
+  .tab-btn.active{background:var(--ink); color:var(--paper); border-color:var(--ink); box-shadow:var(--shadow-md);}
+
+  /* ---------- SECTION NAV ---------- */
+  .section-nav{
+    position:sticky;
+    top:100px;
+    z-index:35;
+    background:rgba(251,249,243,0.92);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:12px 0;
+  }
+  .section-nav-inner{
+    max-width:980px;
+    margin:0 auto;
+    padding:0 24px;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .section-nav-inner::-webkit-scrollbar{display:none;}
+  .section-nav a{
+    font-family:var(--sans);
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    text-decoration:none;
+    white-space:nowrap;
+    padding:7px 15px;
+    border-radius:999px;
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+  .section-nav a:hover{background:var(--paper-alt); color:var(--ink);}
+  .section-nav a.active{background:var(--primary); color:#fff;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding-top:64px; padding-bottom:88px;}
+  .hero-eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--primary);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    font-weight:600;
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(2.6rem, 6.5vw, 4.6rem);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    margin-bottom:22px;
+  }
+  .hero h1 span{color:var(--primary);}
+  .hero .role{
+    font-size:clamp(1.08rem, 2.2vw, 1.3rem);
+    color:var(--ink-soft);
+    max-width:640px;
+    margin-bottom:34px;
+    font-weight:400;
+  }
+  .hero .role strong{color:var(--ink); font-weight:600;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--sans);
+    font-size:14.5px;
+    font-weight:600;
+    padding:13px 24px;
+    border:1.5px solid var(--ink);
+    border-radius:999px;
+    background:var(--ink);
+    color:var(--paper);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    box-shadow:var(--shadow-sm);
+  }
+  .btn:hover{transform:translateY(-2px); background:var(--primary); border-color:var(--primary); box-shadow:var(--shadow-md);}
+  .btn.ghost{background:transparent; color:var(--ink);}
+  .btn.ghost:hover{background:var(--ink); color:var(--paper);}
+
+  /* ---------- PROFIL ---------- */
+  .profil-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  @media (max-width:720px){.profil-grid{grid-template-columns:1fr;}}
+  .profil-text p{font-size:1.03rem; color:var(--ink); margin-bottom:16px; max-width:52ch;}
+  .profil-photo-col{display:flex; flex-direction:column; gap:24px;}
+  .photo-frame{
+    border:none;
+    border-radius:var(--radius);
+    padding:8px;
+    background:var(--card);
+    box-shadow:var(--shadow-md);
+  }
+  .photo-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:calc(var(--radius) - 6px);
+  }
+  .photo-frame figcaption{
+    font-family:var(--mono);
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    padding:10px 6px 4px;
+  }
+  .spec-table{
+    font-family:var(--sans);
+    font-size:13.5px;
+    background:var(--card);
+    border-radius:var(--radius-sm);
+    box-shadow:var(--shadow-sm);
+    padding:6px 18px;
+  }
+  .spec-row{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .spec-row:last-child{border-bottom:none;}
+  .spec-row .k{color:var(--ink-soft);}
+  .spec-row .v{color:var(--ink); font-weight:600; text-align:right;}
+
+  /* ---------- CASE STUDIES ---------- */
+  .cs-list{display:flex; flex-direction:column; gap:20px;}
+  .cs-card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+    padding:32px;
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:28px;
+    position:relative;
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s ease;
+  }
+  .cs-card:hover{box-shadow:var(--shadow-md);}
+  .cs-card.in-view{opacity:1; transform:translateY(0);}
+  @media (max-width:720px){.cs-card{grid-template-columns:1fr; gap:14px; padding:24px;}}
+  .cs-meta{font-family:var(--sans); font-size:12.5px; color:var(--ink-soft);}
+  .cs-meta .cs-tag{
+    display:inline-block;
+    color:var(--accent);
+    background:var(--accent-soft);
+    font-weight:700;
+    font-size:11.5px;
+    margin-bottom:12px;
+    padding:5px 11px;
+    border-radius:999px;
+    letter-spacing:0.02em;
+  }
+  .cs-meta .cs-role{margin-top:14px; line-height:1.7;}
+  .cs-body h3{
+    font-family:var(--display);
+    font-size:1.28rem;
+    font-weight:600;
+    margin-bottom:14px;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .cs-steps{display:flex; flex-direction:column; gap:9px; margin-bottom:14px;}
+  .cs-step{display:flex; gap:10px; font-size:0.96rem; align-items:baseline;}
+  .cs-step .arrow{color:var(--primary); font-family:var(--sans); font-weight:700; flex-shrink:0;}
+  .cs-note{
+    font-size:0.89rem;
+    color:var(--ink-soft);
+    border-left:3px solid var(--accent-soft);
+    padding-left:14px;
+    margin-top:14px;
+    font-style:italic;
+  }
+  .cs-specs{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(130px,1fr));
+    gap:10px;
+    margin:18px 0;
+    font-family:var(--sans);
+  }
+  .cs-specs div{
+    background:var(--paper-alt);
+    border-radius:var(--radius-sm);
+    padding:12px 14px;
+  }
+  .cs-specs .num{
+    font-family:var(--display);
+    font-size:1.15rem;
+    font-weight:700;
+    color:var(--primary);
+    display:block;
+  }
+  .cs-specs .lbl{
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    display:block;
+    margin-top:3px;
+  }
+  .cs-substeps{
+    margin:8px 0 8px 20px;
+    font-size:0.91rem;
+    color:var(--ink-soft);
+  }
+  .cs-substeps li{margin-bottom:5px;}
+  .cs-diagram{
+    margin-top:18px;
+    border-radius:var(--radius-sm);
+    padding:16px 16px 10px;
+    background:var(--paper-alt);
+  }
+  .cs-diagram svg{display:block; width:100%; height:auto;}
+  .cs-diagram .diagram-caption{
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--ink-soft);
+    letter-spacing:0.03em;
+    margin-top:8px;
+    text-align:center;
+  }
+  .cs-stats{
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    margin:16px 0;
+    font-family:var(--sans);
+  }
+  .cs-stat{display:flex; flex-direction:column;}
+  .cs-stat .n{font-family:var(--display); font-size:1.35rem; font-weight:700; color:var(--sky);}
+  .cs-stat .l{font-size:10.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.03em;}
+
+  /* ---------- COMPÉTENCES ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:16px;
+  }
+  @media (max-width:640px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-block{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:24px 26px;}
+  .skill-block h4{
+    font-family:var(--display);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+    font-weight:600;
+  }
+  .skill-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-tag{
+    font-family:var(--sans);
+    font-size:12.5px;
+    font-weight:500;
+    padding:7px 13px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--paper-alt);
+    color:var(--ink);
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+  .skill-tag:hover{background:var(--primary); color:#fff; border-color:var(--primary);}
+
+  /* ---------- FORMATION ---------- */
+  .edu-list{display:flex; flex-direction:column; gap:2px;}
+  .edu-item{
+    display:grid;
+    grid-template-columns:110px 1fr 90px;
+    gap:16px;
+    padding:18px 22px;
+    border-radius:var(--radius-sm);
+    align-items:baseline;
+    background:var(--card);
+    box-shadow:var(--shadow-sm);
+    margin-bottom:10px;
+  }
+  @media (max-width:640px){.edu-item{grid-template-columns:1fr; gap:4px;}}
+  .edu-date{font-family:var(--mono); font-size:12px; color:var(--accent); font-weight:700;}
+  .edu-name{font-weight:600; font-family:var(--display);}
+  .edu-school{color:var(--ink-soft); font-size:0.92rem;}
+  .edu-loc{font-family:var(--mono); font-size:11px; color:var(--ink-soft); text-align:right; text-transform:uppercase;}
+  @media (max-width:640px){.edu-loc{text-align:left;}}
+
+  /* ---------- CONTACT ---------- */
+  .contact-block{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:var(--radius);
+    padding:44px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    box-shadow:var(--shadow-md);
+  }
+  .contact-block h2{
+    font-family:var(--display);
+    font-size:clamp(1.7rem,4vw,2.3rem);
+    max-width:420px;
+    line-height:1.25;
+    color:#fff;
+  }
+  .contact-links{display:flex; flex-direction:column; gap:12px; font-family:var(--sans); font-size:14.5px;}
+  .contact-links a{text-decoration:none; color:var(--paper); border-bottom:1px solid rgba(251,249,243,0.35); padding-bottom:2px;}
+  .contact-links a:hover{color:var(--accent); border-color:var(--accent);}
+  .contact-links .k{color:rgba(251,249,243,0.55); font-size:11px; text-transform:uppercase; margin-right:8px; font-family:var(--mono);}
+
+  footer{
+    padding:32px 0 44px;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-soft);
+    text-align:center;
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- RACE TABLE ---------- */
+  .race-table-wrap{
+    overflow-x:auto;
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+    padding:6px;
+  }
+  .race-table{width:100%; border-collapse:collapse; font-size:0.87rem; min-width:640px;}
+  .race-table th{
+    font-family:var(--mono);
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    text-align:left;
+    padding:12px 14px;
+    white-space:nowrap;
+  }
+  .race-table td{
+    padding:12px 14px;
+    white-space:nowrap;
+    border-top:1px solid var(--line);
+  }
+  .race-table tr:nth-child(even) td{background:var(--paper-alt);}
+  .race-table td.race-name{white-space:normal; font-weight:600; min-width:220px;}
+  .race-table td.num, .race-table th.num{font-family:var(--mono); text-align:right;}
+  .race-table td.idx{font-family:var(--display); text-align:right; color:var(--primary); font-weight:700;}
+
+  /* ---------- SPORT GRID (perso) ---------- */
+  .sport-grid{display:flex; flex-direction:column; gap:16px;}
+  .sport-item{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+    padding:26px 28px;
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:20px;
+    align-items:start;
+  }
+  @media (max-width:640px){.sport-item{grid-template-columns:1fr; gap:6px;}}
+  .sport-item .years{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--accent);
+    font-weight:700;
+    text-transform:uppercase;
+    background:var(--accent-soft);
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:999px;
+    width:fit-content;
+  }
+  .sport-item h4{font-family:var(--display); font-size:1.08rem; margin-bottom:8px; margin-top:8px;}
+  .sport-item p{font-size:0.93rem; color:var(--ink-soft); max-width:56ch;}
+
+  .photo-placeholder{
+    border:1.5px dashed var(--line);
+    border-radius:var(--radius-sm);
+    padding:32px 24px;
+    text-align:center;
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    margin-top:16px;
+    background:var(--paper-alt);
+  }
+</style>
+</head>
+<body>
+
+<div class="titleblock">
+  <div class="titleblock-inner">
+    <div class="tb-cell tb-name">
+      <span class="tb-label">Dessiné par</span><span class="tb-value">K. Ganné</span>
+    </div>
+    <div class="tb-cell"><span class="tb-label">Éch.</span><span class="tb-value">1:1</span></div>
+    <div class="tb-cell"><span class="tb-label">Rév.</span><span class="tb-value">2026</span></div>
+    <div class="tb-cell tb-sheet-cell"><span class="tb-label">Feuille</span><span class="tb-value" id="tb-sheet">00/05</span></div>
+  </div>
+</div>
+
+<div class="tabbar">
+  <button class="tab-btn active" id="tab-pro" onclick="switchView('pro')">Profil professionnel</button>
+  <button class="tab-btn" id="tab-perso" onclick="switchView('perso')">Vie perso & sport</button>
+</div>
+
+<nav class="section-nav" id="nav-pro">
+  <div class="section-nav-inner">
+    <a href="#accueil" data-target="accueil">Accueil</a>
+    <a href="#profil" data-target="profil">Profil</a>
+    <a href="#etudes-de-cas" data-target="etudes-de-cas">Projets</a>
+    <a href="#competences" data-target="competences">Compétences</a>
+    <a href="#formation" data-target="formation">Formation</a>
+    <a href="#contact" data-target="contact">Contact</a>
+  </div>
+</nav>
+
+<main class="wrap" id="view-pro">
+
+  <!-- SHEET 00 — HERO -->
+  <section class="hero" id="accueil" data-sheet="00/05">
+    <div class="hero-eyebrow">Ingénieur du sport · Biomécanique & R&D produit</div>
+    <h1>Kilian <span>Ganné</span></h1>
+    <p class="role">Je conçois des <strong>produits techniques pour le sport et l'outdoor</strong> — de l'étude biomécanique terrain à la pièce validée en CAO — avec une double culture rare : comprendre le corps qui bouge, et concevoir l'objet qui l'accompagne.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#contact">Me contacter</a>
+      <a class="btn ghost" href="#etudes-de-cas">Voir mes projets</a>
+    </div>
+  </section>
+
+  <!-- SHEET 01 — PROFIL -->
+  <section id="profil" data-sheet="01/05">
+    <div class="sheet-header">
+      <span class="num">01</span>
+      <span class="dim-line"></span>
+      <span class="title">Profil</span>
+    </div>
+    <div class="profil-grid">
+      <div class="profil-text">
+        <p>Diplômé d'un Mastère spécialisé en Ingénierie du Sport (Aix-Marseille, IHME), j'ai construit un profil à cheval entre <strong>biomécanique du mouvement</strong> et <strong>R&D de systèmes hardware</strong>.</p>
+        <p>Deux ans chez Morphologics à Lyon m'ont permis de mener des projets de bout en bout : cahier des charges, CAO, prototypage, validation, mais aussi collecte terrain et restitution client sur des études posturales cyclistes.</p>
+        <p>Je suis aujourd'hui à la recherche d'un poste en développement produit ou innovation, en priorité dans le secteur du sport et de l'outdoor.</p>
+      </div>
+      <div class="profil-photo-col">
+        <figure class="photo-frame">
+          <img src="kilian.jpg" alt="Kilian Ganné en restitution client chez Morphologics" loading="lazy">
+          <figcaption>Restitution client · Morphologics, Lyon</figcaption>
+        </figure>
+        <div class="spec-table">
+          <div class="spec-row"><span class="k">Basé à</span><span class="v">Lyon (69)</span></div>
+          <div class="spec-row"><span class="k">Mobilité</span><span class="v">France & international</span></div>
+          <div class="spec-row"><span class="k">Disponibilité</span><span class="v">CDI / CDD — 2026</span></div>
+          <div class="spec-row"><span class="k">Secteurs visés</span><span class="v">Sport, outdoor, cyclisme</span></div>
+          <div class="spec-row"><span class="k">Langues</span><span class="v">FR natif · EN B1</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHEET 02 — ÉTUDES DE CAS -->
+  <section id="etudes-de-cas" data-sheet="02/05">
+    <div class="sheet-header">
+      <span class="num">02</span>
+      <span class="dim-line"></span>
+      <span class="title">Études de cas</span>
+    </div>
+
+    <div class="cs-list">
+
+      <article class="cs-card">
+        <div class="cs-meta">
+          <span class="cs-tag">Hackathon · Chef de projet</span>
+          <div>Mastère IHME · Polytech Marseille<br>2026 — 60h non-stop</div>
+          <div class="cs-role">Rôle : chef de projet, architecture système, pitch</div>
+        </div>
+        <div class="cs-body">
+          <h3>UltraSafe — monitoring thermique prédictif pour l'ultra-endurance</h3>
+          <div class="cs-stats">
+            <div class="cs-stat"><span class="n">5</span><span class="l">personnes pilotées</span></div>
+            <div class="cs-stat"><span class="n">3</span><span class="l">zones de capteurs</span></div>
+            <div class="cs-stat"><span class="n">&lt;500 Ko</span><span class="l">modèle IA embarqué</span></div>
+            <div class="cs-stat"><span class="n">−45°C</span><span class="l">tenue grand froid</span></div>
+          </div>
+          <div class="cs-steps">
+            <div class="cs-step"><span class="arrow">→</span> Cadrage du défi et pilotage d'une équipe de 5 pendant 60h non-stop, avec répartition des rôles (hardware, IA, software, pitch)</div>
+            <div class="cs-step"><span class="arrow">→</span> Conception d'un kit de capteurs 3 zones (pieds, torse, nuque) en BLE 5.0, choisies pour leur valeur diagnostique précoce sur l'hypothermie et l'hyperthermie</div>
+            <div class="cs-step"><span class="arrow">→</span> Architecture de communication à 3 couches : BLE local → GSM/4G → satellite Iridium, pour garantir une alerte même hors-réseau</div>
+            <div class="cs-step"><span class="arrow">→</span> Intégration d'un modèle prédictif LSTM embarqué (TensorFlow Lite, ~50 000 paramètres) anticipant le risque 5 à 10 minutes avant le seuil critique</div>
+            <div class="cs-step"><span class="arrow">→</span> Pitch de la solution, du business model et du go-to-market devant un jury de professionnels</div>
+          </div>
+          <div class="cs-diagram">
+            <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma du système UltraSafe : capteurs corporels, boîtier central, alertes">
+              <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#4A565A">
+                <circle cx="55" cy="35" r="12" fill="none" stroke="#1E2A2E" stroke-width="1.5"/>
+                <line x1="55" y1="47" x2="55" y2="100" stroke="#1E2A2E" stroke-width="1.5"/>
+                <line x1="55" y1="60" x2="35" y2="80" stroke="#1E2A2E" stroke-width="1.5"/>
+                <line x1="55" y1="60" x2="75" y2="80" stroke="#1E2A2E" stroke-width="1.5"/>
+                <line x1="55" y1="100" x2="35" y2="140" stroke="#1E2A2E" stroke-width="1.5"/>
+                <line x1="55" y1="100" x2="75" y2="140" stroke="#1E2A2E" stroke-width="1.5"/>
+                <circle cx="55" cy="24" r="3" fill="#D65A2C"/>
+                <circle cx="55" cy="65" r="3" fill="#D65A2C"/>
+                <circle cx="35" cy="138" r="3" fill="#D65A2C"/>
+                <circle cx="75" cy="138" r="3" fill="#D65A2C"/>
+                <text x="95" y="20">NUQUE</text>
+                <text x="95" y="68">TORSE</text>
+                <text x="95" y="145">PIEDS</text>
+                <line x1="58" y1="24" x2="230" y2="55" stroke="#C8C6BA" stroke-width="1" stroke-dasharray="3,3"/>
+                <line x1="58" y1="65" x2="230" y2="65" stroke="#C8C6BA" stroke-width="1" stroke-dasharray="3,3"/>
+                <line x1="60" y1="138" x2="230" y2="75" stroke="#C8C6BA" stroke-width="1" stroke-dasharray="3,3"/>
+                <rect x="230" y="40" width="150" height="55" fill="none" stroke="#1D4E6B" stroke-width="1.5"/>
+                <text x="245" y="63" font-weight="700" fill="#1D4E6B">ESP32 +</text>
+                <text x="245" y="75" font-weight="700" fill="#1D4E6B">LSTM (TFLite)</text>
+                <line x1="380" y1="55" x2="450" y2="30" stroke="#1E2A2E" stroke-width="1.5"/>
+                <line x1="380" y1="80" x2="450" y2="105" stroke="#1E2A2E" stroke-width="1.5"/>
+                <rect x="450" y="14" width="130" height="32" fill="none" stroke="#3B6E5A" stroke-width="1.5"/>
+                <text x="460" y="34" fill="#3B6E5A">MONTRE COUREUR</text>
+                <rect x="450" y="90" width="130" height="32" fill="none" stroke="#3B6E5A" stroke-width="1.5"/>
+                <text x="452" y="110" fill="#3B6E5A">DASHBOARD ORGA</text>
+                <text x="230" y="115" fill="#4A565A">BLE 5.0 (local)</text>
+                <text x="230" y="128" fill="#4A565A">→ GSM/4G → Iridium (hors-réseau)</text>
+              </g>
+            </svg>
+            <div class="diagram-caption">Flux de données : capteurs corporels → boîtier central IA → double canal d'alerte</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="cs-card">
+        <div class="cs-meta">
+          <span class="cs-tag">R&D Hardware</span>
+          <div>Morphologics · Lyon<br>2024 – 2026</div>
+          <div class="cs-role">Rôle : conception CAO, simulation, sourcing, tests</div>
+        </div>
+        <div class="cs-body">
+          <h3>Conception d'une pédale de vélo innovante</h3>
+          <div class="cs-stats">
+            <div class="cs-stat"><span class="n">20%</span><span class="l">masse réduite</span></div>
+            <div class="cs-stat"><span class="n">16,6 MPa</span><span class="l">contrainte optimisée (Ansys)</span></div>
+            <div class="cs-stat"><span class="n">25</span><span class="l">paires prototypées</span></div>
+            <div class="cs-stat"><span class="n">ISO 4210</span><span class="l">norme cible</span></div>
+          </div>
+          <div class="cs-steps">
+            <div class="cs-step"><span class="arrow">→</span> Rétro-ingénierie d'une pédale du marché et rédaction du cahier des charges (poids, résistance, filetage 9/16", norme ISO 4210)</div>
+            <div class="cs-step"><span class="arrow">→</span> Itérations de conception CAO (SolidWorks) sur le positionnement de l'axe de rotation, avec prototypage FDM et tests d'usage à chaque itération</div>
+            <div class="cs-step"><span class="arrow">→</span> Diagnostic d'une rupture récurrente en usage réel, puis simulation par éléments finis (Ansys) pour comparer deux géométries d'axe</div>
+            <div class="cs-step"><span class="arrow">→</span> Validation d'une nouvelle géométrie réduisant la contrainte de Von Mises de 21,9 à 16,6 MPa, et sourcing fournisseurs (matériaux, coûts de production)</div>
+            <div class="cs-step"><span class="arrow">→</span> Comparaison expérimentale de l'amplitude de pédalage vs une pédale plate classique (analyse vidéo, logiciel Tracker)</div>
+          </div>
+          <p class="cs-note">Certains éléments (dimensions finales, plans détaillés) relèvent du secret industriel Morphologics et ne sont pas reproduits ici.</p>
+        </div>
+      </article>
+
+      <article class="cs-card">
+        <div class="cs-meta">
+          <span class="cs-tag">Terrain & Biomécanique</span>
+          <div>Morphologics · Lyon<br>2024 – 2026</div>
+          <div class="cs-role">Rôle : acquisition, analyse, restitution client</div>
+        </div>
+        <div class="cs-body">
+          <h3>Études posturales cyclistes & système de mesure simplifié</h3>
+          <div class="cs-steps">
+            <div class="cs-step"><span class="arrow">→</span> Acquisition cinématique sur le terrain, capteurs et instrumentation, pour des clients particuliers et sportifs</div>
+            <div class="cs-step"><span class="arrow">→</span> Analyse biomécanique et recommandations personnalisées, avec restitution directe au client</div>
+            <div class="cs-step"><span class="arrow">→</span> Conception du volet hardware d'un nouveau système d'étude posturale simplifiée : supports imprimés en 3D intégrant des marqueurs Aruco (pédale, cintre, selle) pour la détection automatique des points clés du vélo</div>
+            <div class="cs-step"><span class="arrow">→</span> Collaboration en binôme avec un doctorant en charge du volet logiciel (détection Aruco, capture sans marqueur)</div>
+          </div>
+          <p class="cs-note">Dizaines de restitutions client ; contribution continue à l'amélioration des protocoles internes de mesure.</p>
+        </div>
+      </article>
+
+      <article class="cs-card">
+        <div class="cs-meta">
+          <span class="cs-tag">Recherche</span>
+          <div>Institut PPrime · Poitiers<br>Avr. – Juin 2024</div>
+          <div class="cs-role">Rôle : expérimentation, programmation MATLAB, rédaction</div>
+        </div>
+        <div class="cs-body">
+          <h3>Capture du mouvement : méthodes avec et sans marqueurs</h3>
+          <div class="cs-stats">
+            <div class="cs-stat"><span class="n">36</span><span class="l">marqueurs réfléchissants (Vicon)</span></div>
+            <div class="cs-stat"><span class="n">7</span><span class="l">caméras GoPro (sans marqueur)</span></div>
+            <div class="cs-stat"><span class="n">3</span><span class="l">sujets, 4 séquences de mouvement</span></div>
+          </div>
+          <div class="cs-steps">
+            <div class="cs-step"><span class="arrow">→</span> Conception d'un protocole comparatif (marche, squat, rotations axiales) sur plateformes de force, avec calibration multi-caméras</div>
+            <div class="cs-step"><span class="arrow">→</span> Développement d'un pipeline MATLAB complet : calcul des centres articulaires (méthode SCoRE), repères segmentaires selon les conventions ISB, filtrage passe-bas et comblement des pertes de marqueurs par spline cubique</div>
+            <div class="cs-step"><span class="arrow">→</span> Calcul des angles articulaires (hanche, genou, cheville) par décomposition d'Euler et comparaison à la littérature scientifique</div>
+            <div class="cs-step"><span class="arrow">→</span> Rédaction d'un rapport scientifique en français et en anglais, avec revue bibliographique et discussion critique des résultats</div>
+          </div>
+          <div class="cs-diagram">
+            <svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparaison capture avec marqueurs (Vicon) et sans marqueurs (OpenPose)">
+              <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#4A565A">
+                <circle cx="140" cy="30" r="10" fill="none" stroke="#1E2A2E" stroke-width="1.5"/>
+                <line x1="140" y1="40" x2="140" y2="85" stroke="#1E2A2E" stroke-width="1.5"/>
+                <line x1="140" y1="85" x2="120" y2="130" stroke="#1E2A2E" stroke-width="1.5"/>
+                <line x1="140" y1="85" x2="160" y2="130" stroke="#1E2A2E" stroke-width="1.5"/>
+                <circle cx="140" cy="85" r="3" fill="#D65A2C"/>
+                <circle cx="120" cy="130" r="3" fill="#D65A2C"/>
+                <circle cx="160" cy="130" r="3" fill="#D65A2C"/>
+                <circle cx="140" cy="107" r="3" fill="#D65A2C"/>
+                <text x="90" y="145" font-weight="700" fill="#1E2A2E">AVEC MARQUEURS · VICON</text>
+                <line x1="260" y1="0" x2="260" y2="150" stroke="#C8C6BA" stroke-width="1" stroke-dasharray="2,4"/>
+                <circle cx="420" cy="30" r="10" fill="none" stroke="#1D4E6B" stroke-width="1.5"/>
+                <line x1="420" y1="40" x2="420" y2="85" stroke="#1D4E6B" stroke-width="1.5"/>
+                <line x1="420" y1="85" x2="400" y2="130" stroke="#1D4E6B" stroke-width="1.5"/>
+                <line x1="420" y1="85" x2="440" y2="130" stroke="#1D4E6B" stroke-width="1.5"/>
+                <path d="M 415 100 A 10 10 0 0 1 425 100" fill="none" stroke="#1D4E6B" stroke-width="1"/>
+                <text x="365" y="145" font-weight="700" fill="#1D4E6B">SANS MARQUEUR · OPENPOSE</text>
+              </g>
+            </svg>
+            <div class="diagram-caption">Deux méthodes de reconstruction de la cinématique articulaire, comparées sur les mêmes séquences</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="cs-card">
+        <div class="cs-meta">
+          <span class="cs-tag">Terrain extrême · Mémoire</span>
+          <div>Expédition Deep Climate · Guyane française<br>2022 – 2023</div>
+          <div class="cs-role">Rôle : collecte physiologique, analyse statistique, mémoire</div>
+        </div>
+        <div class="cs-body">
+          <h3>Adaptation du sommeil en milieu chaud et humide</h3>
+          <div class="cs-stats">
+            <div class="cs-stat"><span class="n">20</span><span class="l">« climatonautes » suivis</span></div>
+            <div class="cs-stat"><span class="n">40+</span><span class="l">jours d'expédition</span></div>
+            <div class="cs-stat"><span class="n">3</span><span class="l">temps de mesure (pré/per/post)</span></div>
+          </div>
+          <div class="cs-steps">
+            <div class="cs-step"><span class="arrow">→</span> Revue de littérature sur les effets de la chaleur humide sur les stades de sommeil et l'acclimatation physiologique</div>
+            <div class="cs-step"><span class="arrow">→</span> Suivi de 20 sujets par polysomnographie frontale connectée (Somfit, transmission Bluetooth temps réel) et actimétrie de poignet, complétés par questionnaire de Spiegel</div>
+            <div class="cs-step"><span class="arrow">→</span> Extraction et structuration des données sur la plateforme Nexus 360, traitement statistique comparatif pré/post sous Excel</div>
+            <div class="cs-step"><span class="arrow">→</span> Analyse des phases de sommeil, efficience, latence d'endormissement et de sommeil paradoxal, mise en lien avec l'acclimatation thermique</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- SHEET 03 — COMPÉTENCES -->
+  <section id="competences" data-sheet="03/05">
+    <div class="sheet-header">
+      <span class="num">03</span>
+      <span class="dim-line"></span>
+      <span class="title">Compétences</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h4>CAO & Simulation</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">SolidWorks</span>
+          <span class="skill-tag">Ansys (contrainte Von Mises)</span>
+          <span class="skill-tag">Impression 3D FDM (PLA/PETG/ABS)</span>
+          <span class="skill-tag">Rétro-ingénierie</span>
+          <span class="skill-tag">Normes ISO 4210</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Programmation & Données</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Traitement du signal (filtrage, splines)</span>
+          <span class="skill-tag">Statistiques (régression, écart-type)</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Biomécanique & Mesure</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Capture du mouvement (Vicon, OpenPose)</span>
+          <span class="skill-tag">Études posturales</span>
+          <span class="skill-tag">Conventions ISB / méthode SCoRE</span>
+          <span class="skill-tag">Instrumentation / capteurs</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Électronique & Systèmes embarqués</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Capteurs BLE (ESP32)</span>
+          <span class="skill-tag">Circuits de charge / batteries Li-ion</span>
+          <span class="skill-tag">IA embarquée légère (TensorFlow Lite)</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Gestion de projet</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Cahiers des charges</span>
+          <span class="skill-tag">ClickUp</span>
+          <span class="skill-tag">Pilotage d'équipe</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Langues</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Français — natif</span>
+          <span class="skill-tag">Anglais — B1</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHEET 04 — FORMATION -->
+  <section id="formation" data-sheet="04/05">
+    <div class="sheet-header">
+      <span class="num">04</span>
+      <span class="dim-line"></span>
+      <span class="title">Formation</span>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <span class="edu-date">2025–2026</span>
+        <span>
+          <div class="edu-name">Mastère spécialisé — Ingénierie du Sport (IHME)</div>
+          <div class="edu-school">Université Aix-Marseille</div>
+        </span>
+        <span class="edu-loc">Aix-Marseille</span>
+      </div>
+      <div class="edu-item">
+        <span class="edu-date">2023–2025</span>
+        <span>
+          <div class="edu-name">Master Ingénierie de Conception — Biomécanique</div>
+          <div class="edu-school">Université de Poitiers</div>
+        </span>
+        <span class="edu-loc">Poitiers</span>
+      </div>
+      <div class="edu-item">
+        <span class="edu-date">2020–2023</span>
+        <span>
+          <div class="edu-name">Licence STAPS — Ergonomie du Sport</div>
+          <div class="edu-school">Université de Caen Normandie</div>
+        </span>
+        <span class="edu-loc">Caen</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHEET 05 — CONTACT -->
+  <section id="contact" data-sheet="05/05">
+    <div class="sheet-header">
+      <span class="num">05</span>
+      <span class="dim-line"></span>
+      <span class="title">Contact</span>
+    </div>
+    <div class="contact-block">
+      <h2>Une piste à explorer&nbsp;? Parlons-en.</h2>
+      <div class="contact-links">
+        <div><span class="k">Mail</span><a href="mailto:kilian.ganne@gmail.com">kilian.ganne@gmail.com</a></div>
+        <div><span class="k">Tél</span><a href="tel:+33782323700">07 82 32 37 70</a></div>
+        <div><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/kilian-ganne" target="_blank" rel="noopener">linkedin.com/in/kilian-ganne</a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="section-nav" id="nav-perso" style="display:none">
+  <div class="section-nav-inner">
+    <a href="#perso-accueil" data-target="perso-accueil">Accueil</a>
+    <a href="#trail" data-target="trail">Trail</a>
+    <a href="#autres-sports" data-target="autres-sports">Parcours sportif</a>
+    <a href="#road-trip" data-target="road-trip">Van & montagne</a>
+  </div>
+</nav>
+
+<main class="wrap" id="view-perso" style="display:none">
+
+  <!-- HERO PERSO -->
+  <section class="hero" id="perso-accueil" data-sheet="00/03">
+    <div class="hero-eyebrow">En dehors du bureau</div>
+    <h1>Terrain, <span>trail</span> & montagne</h1>
+    <p class="role">Grimpeur, joueur de badminton, cycliste dans une autre vie — aujourd'hui c'est surtout le <strong>trail et la randonnée</strong> qui rythment mes week-ends, van chargé direction les massifs.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#trail">Voir mes courses</a>
+      <a class="btn ghost" href="#autres-sports">Mon parcours sportif</a>
+    </div>
+  </section>
+
+  <!-- SHEET 01 — TRAIL -->
+  <section id="trail" data-sheet="01/03">
+    <div class="sheet-header">
+      <span class="num">01</span>
+      <span class="dim-line"></span>
+      <span class="title">Trail & courses</span>
+    </div>
+    <div class="profil-text" style="margin-bottom:24px;">
+      <p>Je pratique le trail depuis plusieurs années, du format court et rapide jusqu'à l'ultra (100 km). J'aime autant l'exigence technique d'un Sierre-Zinal que l'endurance pure d'une SaintéLyon ou d'un Templiers.</p>
+    </div>
+    <div class="spec-table" style="margin-bottom:24px;">
+      <div class="spec-row"><span class="k">UTMB Index</span><span class="v">601</span></div>
+      <div class="spec-row"><span class="k">Running Stones</span><span class="v">3</span></div>
+      <div class="spec-row"><span class="k">Formats parcourus</span><span class="v">20K · 50K · 100K</span></div>
+    </div>
+    <div class="race-table-wrap">
+      <table class="race-table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Date</th>
+            <th class="num">Distance</th>
+            <th class="num">D+</th>
+            <th class="num">Temps</th>
+            <th class="num">Classement</th>
+            <th class="num">Index</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="race-name">Ultra Boucle de la Sarra — Boskoop Talc</td><td>22/05/2026</td><td class="num">15 km</td><td class="num">594 m</td><td class="num">01:39:39</td><td class="num">2 / 69</td><td class="idx">618</td></tr>
+          <tr><td class="race-name">Trail Nivolet-Revard</td><td>03/05/2026</td><td class="num">53,1 km</td><td class="num">3028 m</td><td class="num">07:10:46</td><td class="num">118 / 508</td><td class="idx">579</td></tr>
+          <tr><td class="race-name">Festival Des Templiers — Endurance Trail</td><td>17/10/2025</td><td class="num">100 km</td><td class="num">4271 m</td><td class="num">16:24:18</td><td class="num">467 / 1282</td><td class="idx">503</td></tr>
+          <tr><td class="race-name">Ultra Beaujolais Villages Trail — Extra BVT</td><td>27/09/2025</td><td class="num">63 km</td><td class="num">3500 m</td><td class="num">08:28:45</td><td class="num">19 / 114</td><td class="idx">544</td></tr>
+          <tr><td class="race-name">Sierre-Zinal</td><td>09/08/2025</td><td class="num">31,3 km</td><td class="num">2190 m</td><td class="num">03:53:09</td><td class="num">430 / 1613</td><td class="idx">619</td></tr>
+          <tr><td class="race-name">La Bel'Montaise — Maxi Bel'Montaise 42</td><td>20/07/2025</td><td class="num">43 km</td><td class="num">1800 m</td><td class="num">04:31:36</td><td class="num">21 / 74</td><td class="idx">566</td></tr>
+          <tr><td class="race-name">Mad'Trail</td><td>13/07/2025</td><td class="num">61,9 km</td><td class="num">3933 m</td><td class="num">11:07:27</td><td class="num">34 / 127</td><td class="idx">566</td></tr>
+          <tr><td class="race-name">Grand Trail du Saint-Jacques by UTMB — 100K</td><td>14/06/2025</td><td class="num">81,9 km</td><td class="num">3080 m</td><td class="num">13:22:37</td><td class="num">468 / 1073</td><td class="idx">490</td></tr>
+          <tr><td class="race-name">Golfo dell'Isola</td><td>17/05/2025</td><td class="num">26 km</td><td class="num">1430 m</td><td class="num">03:28:20</td><td class="num">81 / 114</td><td class="idx">559</td></tr>
+          <tr><td class="race-name">La Trace des Maquisards — 100 km</td><td>15/02/2025</td><td class="num">100 km</td><td class="num">4000 m</td><td class="num">14:46:49</td><td class="num">78 / 400</td><td class="idx">548</td></tr>
+          <tr><td class="race-name">Raidlight Winter Trail</td><td>01/02/2025</td><td class="num">24 km</td><td class="num">1350 m</td><td class="num">02:41:22</td><td class="num">55 / 370</td><td class="idx">573</td></tr>
+          <tr><td class="race-name">La Asics SaintéLyon</td><td>30/11/2024</td><td class="num">82 km</td><td class="num">2273 m</td><td class="num">10:46:23</td><td class="num">1660 / 6252</td><td class="idx">507</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="photo-placeholder">Photos de courses à venir</div>
+  </section>
+
+  <!-- SHEET 02 — AUTRES SPORTS -->
+  <section id="autres-sports" data-sheet="02/03">
+    <div class="sheet-header">
+      <span class="num">02</span>
+      <span class="dim-line"></span>
+      <span class="title">Parcours sportif</span>
+    </div>
+    <div class="sport-grid">
+      <div class="sport-item">
+        <div class="years">4 – 18 ans</div>
+        <div>
+          <h4>Cyclisme</h4>
+          <p>Une pratique intensive du vélo pendant toute l'enfance et l'adolescence — la base d'endurance et la culture du geste sportif qui nourrissent aujourd'hui mon travail sur la posture cycliste.</p>
+        </div>
+      </div>
+      <div class="sport-item">
+        <div class="years">Escalade</div>
+        <div>
+          <h4>Grimpe & encadrement</h4>
+          <p>Section sportive escalade au lycée, puis formation d'initiateur SAE (encadrement en salle) — une pratique technique et exigeante, autant physique que mentale.</p>
+        </div>
+      </div>
+      <div class="sport-item">
+        <div class="years">Collège</div>
+        <div>
+          <h4>Badminton</h4>
+          <p>Section sportive badminton au collège — plusieurs années de compétition qui ont posé les bases de ma culture sportive générale.</p>
+        </div>
+      </div>
+      <div class="sport-item">
+        <div class="years">Aujourd'hui</div>
+        <div>
+          <h4>Sports outdoor</h4>
+          <p>Trail et randonnée en priorité, avec une vraie attirance pour tout ce qui se pratique dehors, en montagne, sur la durée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHEET 03 — ROAD TRIP -->
+  <section id="road-trip" data-sheet="03/03">
+    <div class="sheet-header">
+      <span class="num">03</span>
+      <span class="dim-line"></span>
+      <span class="title">Van & montagne</span>
+    </div>
+    <div class="profil-text">
+      <p>Je voyage régulièrement en van pour rejoindre les massifs et enchaîner les sorties trail ou randonnée sur plusieurs jours — direction les Alpes, l'Italie ou la Suisse selon les saisons et les envies.</p>
+      <p>Cette vie un peu nomade, entre départs impromptus et bivouacs en altitude, est devenue un vrai mode de vie autant qu'un terrain de jeu.</p>
+    </div>
+    <div class="photo-placeholder">Photos de road trip à venir</div>
+  </section>
+
+</main>
+
+<footer>Kilian Ganné — Lyon, France — Mis à jour en 2026</footer>
+
+<script>
+  function initCardReveal(root){
+    const cards = root.querySelectorAll('.cs-card');
+    if ('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, {threshold:0.15});
+      cards.forEach(c=>io.observe(c));
+    } else {
+      cards.forEach(c=>c.classList.add('in-view'));
+    }
+  }
+
+  let sheetObserver = null;
+  function initSheetSpy(root, navRoot){
+    if (sheetObserver) sheetObserver.disconnect();
+    const sections = root.querySelectorAll('section[data-sheet]');
+    const sheetLabel = document.getElementById('tb-sheet');
+    const navLinks = navRoot ? navRoot.querySelectorAll('a[data-target]') : [];
+    if ('IntersectionObserver' in window && sections.length){
+      sheetObserver = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            sheetLabel.textContent = e.target.getAttribute('data-sheet');
+            const id = e.target.getAttribute('id');
+            navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('data-target') === id));
+          }
+        });
+      }, {rootMargin:'-45% 0px -45% 0px'});
+      sections.forEach(s=>sheetObserver.observe(s));
+    }
+  }
+
+  const viewPro = document.getElementById('view-pro');
+  const viewPerso = document.getElementById('view-perso');
+  const navPro = document.getElementById('nav-pro');
+  const navPerso = document.getElementById('nav-perso');
+
+  function switchView(view){
+    const showPro = view === 'pro';
+    viewPro.style.display = showPro ? '' : 'none';
+    viewPerso.style.display = showPro ? 'none' : '';
+    navPro.style.display = showPro ? '' : 'none';
+    navPerso.style.display = showPro ? 'none' : '';
+    document.getElementById('tab-pro').classList.toggle('active', showPro);
+    document.getElementById('tab-perso').classList.toggle('active', !showPro);
+    document.getElementById('tb-sheet').textContent = '00/' + (showPro ? '05' : '03');
+    window.scrollTo({top:0, behavior:'instant'});
+    initSheetSpy(showPro ? viewPro : viewPerso, showPro ? navPro : navPerso);
+  }
+
+  initCardReveal(viewPro);
+  initSheetSpy(viewPro, navPro);
+</script>
+
+</body>
+</html>
